@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0f6b21">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Magunas">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Kenya's favourite neighbourhood supermarket. Fresh groceries delivered via Glovo.">
+<title>Magunas Supermarket</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --g50:#edfbf0; --g100:#c8f5d2; --g200:#8fe8a4;
+  --g400:#3cc75a; --g500:#22a83a; --g600:#178a2d;
+  --g700:#0f6b21; --g800:#084d17; --g900:#03300d;
+  --gold:#f5a623; --gold-bg:#fdf3e0;
+  --w:#fff;
+  --gray50:#fafaf9; --gray100:#f4f4f0; --gray150:#eeede8;
+  --gray200:#e0dfd8; --gray300:#c8c7c0; --gray400:#9a9990;
+  --gray500:#6e6d66; --gray600:#4e4d48; --gray800:#2a2a26; --gray900:#18181500;
+  --red:#e24b4a;
+  --fh:'Syne',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --r8:8px; --r12:12px; --r16:16px; --r20:20px; --r24:24px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:#18181500;}
+body{
+  font-family:var(--fb);
+  background:var(--gray100);
+  color:var(--gray800);
+  display:flex;
+  flex-direction:column;
+  height:100dvh;
+  max-width:430px;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(0,0,0,0.3);
+}
+
+/* ===== SCROLL VIEWS ===== */
+.screen{
+  flex:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  display:none;
+  flex-direction:column;
+  background:var(--gray100);
+  padding-bottom:calc(80px + var(--safe-bot));
+}
+.screen.active{display:flex;}
+
+/* ===== STATUS BAR SPACER ===== */
+.status-bar{
+  height:calc(44px + var(--safe-top));
+  background:var(--g700);
+  flex-shrink:0;
+  display:flex;
+  align-items:flex-end;
+  padding:0 20px 10px;
+  justify-content:space-between;
+}
+.status-time{font-size:15px;font-weight:600;color:var(--w);}
+.status-icons{display:flex;gap:5px;align-items:center;}
+.status-icons span{font-size:14px;}
+
+/* ===== TOP HEADERS ===== */
+.app-header{
+  background:var(--g700);
+  padding:0 20px 20px;
+  flex-shrink:0;
+}
+.app-header-row{display:flex;align-items:center;justify-content:space-between;}
+.header-logo{display:flex;align-items:center;gap:10px;}
+.header-logo-icon{width:36px;height:36px;background:var(--w);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.header-logo-text{display:flex;flex-direction:column;}
+.header-logo-text b{font-family:var(--fh);font-size:18px;font-weight:800;color:var(--w);line-height:1;}
+.header-logo-text span{font-size:10px;color:var(--g200);letter-spacing:0.5px;}
+.header-right{display:flex;gap:10px;align-items:center;}
+.icon-btn{width:38px;height:38px;background:rgba(255,255,255,0.15);border:none;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--w);transition:background 0.2s;position:relative;}
+.icon-btn:active{background:rgba(255,255,255,0.25);}
+.badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--gold);border-radius:50%;font-size:10px;font-weight:700;color:var(--gray800);display:flex;align-items:center;justify-content:center;border:2px solid var(--g700);}
+
+/* ===== SEARCH BAR ===== */
+.search-wrap{margin:12px 20px 0;position:relative;}
+.search-input{
+  width:100%;border:none;border-radius:var(--r12);padding:12px 16px 12px 44px;
+  font-family:var(--fb);font-size:14px;background:rgba(255,255,255,0.18);
+  color:var(--w);outline:none;
+}
+.search-input::placeholder{color:rgba(255,255,255,0.55);}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav{
+  position:fixed;
+  bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;
+  background:var(--w);
+  border-top:1px solid var(--gray200);
+  display:flex;
+  padding-bottom:var(--safe-bot);
+  z-index:500;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.08);
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  padding:10px 0 8px;gap:3px;cursor:pointer;border:none;background:none;
+  font-family:var(--fb);transition:all 0.15s;
+}
+.nav-item .nav-icon{font-size:22px;transition:transform 0.15s;}
+.nav-item .nav-label{font-size:10px;font-weight:500;color:var(--gray400);transition:color 0.15s;}
+.nav-item.active .nav-label{color:var(--g700);}
+.nav-item.active .nav-icon{transform:translateY(-2px);}
+.nav-item:active{opacity:0.7;}
+
+/* ===== HOME SCREEN ===== */
+.location-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  border-radius:50px;padding:5px 12px;color:var(--w);font-size:12px;
+  cursor:pointer;margin-bottom:14px;
+}
+.location-chip span{font-weight:500;}
+
+/* PROMO CAROUSEL */
+.promo-scroll{
+  display:flex;gap:12px;overflow-x:auto;padding:16px 20px;
+  scrollbar-width:none;flex-shrink:0;
+}
+.promo-scroll::-webkit-scrollbar{display:none;}
+.promo-card{
+  flex-shrink:0;width:280px;border-radius:var(--r20);padding:24px 20px;
+  display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+}
+.promo-card:nth-child(1){background:linear-gradient(135deg,var(--g700),var(--g500));}
+.promo-card:nth-child(2){background:linear-gradient(135deg,#1a4fa8,#2d7dd2);}
+.promo-card:nth-child(3){background:linear-gradient(135deg,#8b2f67,#c4507a);}
+.promo-card-emoji{font-size:48px;position:absolute;right:16px;top:50%;transform:translateY(-50%);opacity:0.6;}
+.promo-tag{background:rgba(255,255,255,0.25);border-radius:50px;padding:3px 10px;font-size:11px;color:var(--w);width:fit-content;font-weight:500;}
+.promo-title{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--w);line-height:1.2;max-width:160px;}
+.promo-sub{font-size:12px;color:rgba(255,255,255,0.75);max-width:160px;}
+.promo-btn{background:var(--w);border:none;border-radius:50px;padding:8px 16px;font-family:var(--fb);font-size:12px;font-weight:600;cursor:pointer;width:fit-content;margin-top:4px;}
+
+/* SECTION HEADERS */
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin-bottom:12px;}
+.sec-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--gray800);}
+.sec-link{font-size:13px;color:var(--g600);font-weight:500;}
+
+/* CATEGORIES HORIZONTAL */
+.cats-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
+.cats-scroll::-webkit-scrollbar{display:none;}
+.cat-chip{
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;
+  background:var(--w);border:1.5px solid var(--gray200);border-radius:var(--r16);
+  padding:14px 12px 10px;cursor:pointer;transition:all 0.2s;min-width:70px;
+}
+.cat-chip:active,.cat-chip.active{border-color:var(--g500);background:var(--g50);}
+.cat-chip-icon{font-size:26px;}
+.cat-chip-name{font-size:10px;font-weight:600;color:var(--gray600);text-align:center;line-height:1.2;}
+
+/* PRODUCT GRID */
+.products-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px;
+}
+.prod-card{
+  background:var(--w);border-radius:var(--r16);overflow:hidden;
+  border:1px solid var(--gray150);transition:transform 0.15s;
+}
+.prod-card:active{transform:scale(0.97);}
+.prod-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;}
+.prod-badge-tag{position:absolute;top:8px;left:8px;background:var(--g500);color:var(--w);font-size:9px;font-weight:700;padding:3px 8px;border-radius:50px;}
+.prod-badge-tag.hot{background:var(--red);}
+.prod-body{padding:10px 12px 12px;}
+.prod-name{font-size:13px;font-weight:600;color:var(--gray800);line-height:1.3;margin-bottom:2px;}
+.prod-weight{font-size:11px;color:var(--gray400);margin-bottom:8px;}
+.prod-row{display:flex;align-items:center;justify-content:space-between;}
+.prod-price{font-family:var(--fh);font-size:16px;font-weight:700;color:var(--g700);}
+.prod-price small{font-size:10px;font-weight:400;color:var(--gray400);text-decoration:line-through;display:block;font-family:var(--fb);}
+.add-btn{width:30px;height:30px;background:var(--g700);border:none;border-radius:8px;color:var(--w);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.add-btn:active{background:var(--g900);transform:scale(0.9);}
+
+/* SECTION SPACER */
+.sec-space{height:18px;flex-shrink:0;}
+
+/* ===== BRANCHES SCREEN ===== */
+.branches-header{background:var(--g700);padding:0 20px 20px;flex-shrink:0;}
+.branches-screen-title{font-family:var(--fh);font-size:22px;font-weight:800;color:var(--w);margin-bottom:4px;}
+.branches-screen-sub{font-size:13px;color:var(--g200);}
+.detect-location-btn{
+  margin:16px 20px 0;background:var(--g50);border:2px dashed var(--g400);
+  border-radius:var(--r12);padding:14px;display:flex;align-items:center;gap:12px;
+  cursor:pointer;font-family:var(--fb);font-size:14px;font-weight:500;color:var(--g700);
+  flex-shrink:0;
+}
+.detect-location-btn:active{background:var(--g100);}
+.branches-list-scroll{overflow-y:auto;flex:1;padding:12px 20px 0;}
+.branch-row{
+  background:var(--w);border-radius:var(--r16);padding:14px 16px;
+  display:flex;align-items:center;gap:14px;margin-bottom:10px;
+  border:1.5px solid var(--gray200);cursor:pointer;transition:all 0.2s;
+}
+.branch-row:active,.branch-row.selected{border-color:var(--g500);background:var(--g50);}
+.branch-row-pin{width:42px;height:42px;border-radius:12px;background:var(--g50);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.branch-row-info{flex:1;}
+.branch-row-name{font-size:14px;font-weight:600;color:var(--gray800);}
+.branch-row-type{font-size:11px;color:var(--gray400);margin-top:2px;}
+.branch-row-dist{font-size:12px;color:var(--g600);font-weight:600;}
+.branch-type-pill{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.5px;padding:2px 7px;border-radius:50px;text-transform:uppercase;margin-top:4px;}
+.btp-main{background:var(--g50);color:var(--g700);}
+.btp-express{background:#fdf3e0;color:#9a6200;}
+.btp-roasters{background:#fce8f3;color:#7a2560;}
+
+/* ===== CART SCREEN ===== */
+.cart-header{background:var(--g700);padding:0 20px 20px;flex-shrink:0;}
+.cart-screen-title{font-family:var(--fh);font-size:22px;font-weight:800;color:var(--w);}
+.cart-screen-sub{font-size:13px;color:var(--g200);margin-top:2px;}
+.cart-list{padding:16px 20px;flex:1;overflow-y:auto;}
+.cart-empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;flex:1;padding:60px 20px;text-align:center;}
+.cart-empty-icon{font-size:64px;}
+.cart-empty-title{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--gray600);}
+.cart-empty-sub{font-size:14px;color:var(--gray400);line-height:1.5;}
+.cart-item-row{
+  background:var(--w);border-radius:var(--r16);padding:14px;
+  display:flex;align-items:center;gap:12px;margin-bottom:10px;
+  border:1px solid var(--gray150);
+}
+.ci-img{width:56px;height:56px;background:var(--gray100);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+.ci-info{flex:1;}
+.ci-name{font-size:13px;font-weight:600;color:var(--gray800);line-height:1.3;}
+.ci-price{font-size:13px;font-weight:700;color:var(--g700);margin-top:4px;}
+.ci-qty{display:flex;align-items:center;gap:8px;background:var(--gray100);border-radius:8px;padding:4px 8px;}
+.ci-qty-btn{background:none;border:none;color:var(--g700);font-size:18px;font-weight:700;cursor:pointer;width:20px;height:20px;display:flex;align-items:center;justify-content:center;line-height:1;}
+.ci-qty-btn:active{color:var(--g900);}
+.ci-qty-val{font-size:14px;font-weight:600;min-width:18px;text-align:center;}
+.cart-summary{background:var(--w);border-radius:var(--r20) var(--r20) 0 0;padding:20px;border-top:1px solid var(--gray200);flex-shrink:0;position:sticky;bottom:0;}
+.cart-summary-row{display:flex;justify-content:space-between;font-size:13px;color:var(--gray500);margin-bottom:6px;}
+.cart-summary-total{display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding-top:10px;border-top:1px solid var(--gray200);margin-top:4px;color:var(--gray800);}
+.cart-summary-total span:last-child{color:var(--g700);}
+.checkout-cta{
+  margin-top:14px;width:100%;background:var(--g700);color:var(--w);
+  font-family:var(--fb);font-size:16px;font-weight:600;padding:16px;
+  border:none;border-radius:var(--r16);cursor:pointer;display:flex;
+  align-items:center;justify-content:center;gap:8px;transition:background 0.15s;
+}
+.checkout-cta:active{background:var(--g900);}
+.glovo-tag{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:12px;color:var(--gray400);}
+
+/* ===== CHECKOUT FLOW ===== */
+.checkout-screen{background:var(--w);}
+.checkout-header{background:var(--g700);padding:0 20px 20px;flex-shrink:0;display:flex;align-items:flex-end;gap:14px;}
+.back-btn{background:rgba(255,255,255,0.15);border:none;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--w);flex-shrink:0;}
+.back-btn:active{background:rgba(255,255,255,0.3);}
+.checkout-header-text{display:flex;flex-direction:column;}
+.checkout-header-text h2{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--w);}
+.checkout-header-text p{font-size:12px;color:var(--g200);margin-top:2px;}
+.checkout-body{padding:20px;flex:1;overflow-y:auto;}
+.field-section{margin-bottom:24px;}
+.field-section h3{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--gray800);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gray200);}
+.field-group{margin-bottom:12px;}
+.field-label{font-size:11px;font-weight:600;color:var(--gray500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;display:block;}
+.field-input{
+  width:100%;border:1.5px solid var(--gray200);border-radius:var(--r12);
+  padding:12px 14px;font-family:var(--fb);font-size:14px;color:var(--gray800);
+  background:var(--gray50);outline:none;transition:border-color 0.2s;
+}
+.field-input:focus{border-color:var(--g500);background:var(--w);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pay-options{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.pay-opt{
+  border:2px solid var(--gray200);border-radius:var(--r12);padding:12px 8px;
+  text-align:center;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.pay-opt:active{background:var(--g50);}
+.pay-opt.selected{border-color:var(--g600);background:var(--g50);}
+.pay-opt-icon{font-size:22px;}
+.pay-opt-name{font-size:11px;font-weight:600;color:var(--gray700);}
+.order-summary-card{background:var(--gray50);border-radius:var(--r16);padding:16px;margin-bottom:20px;border:1px solid var(--gray200);}
+.os-row{display:flex;justify-content:space-between;font-size:13px;color:var(--gray500);margin-bottom:6px;}
+.os-total{display:flex;justify-content:space-between;font-size:16px;font-weight:700;padding-top:10px;border-top:1px solid var(--gray200);margin-top:2px;}
+.os-total span:last-child{color:var(--g700);}
+.place-btn{
+  width:100%;background:var(--g700);color:var(--w);font-family:var(--fb);
+  font-size:16px;font-weight:600;padding:16px;border:none;border-radius:var(--r16);
+  cursor:pointer;transition:background 0.15s;margin-bottom:8px;
+}
+.place-btn:active{background:var(--g900);}
+
+/* ===== SUCCESS SCREEN ===== */
+.success-view{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex:1;padding:40px 30px;text-align:center;
+}
+.success-anim{font-size:80px;margin-bottom:20px;animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275);}
+@keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.success-view h2{font-family:var(--fh);font-size:26px;font-weight:800;color:var(--g700);margin-bottom:10px;}
+.success-view p{font-size:14px;color:var(--gray500);line-height:1.6;margin-bottom:28px;}
+.tracking-card{background:var(--g50);border-radius:var(--r20);padding:20px;width:100%;border:1px solid var(--g200);margin-bottom:24px;}
+.tracking-steps{display:flex;align-items:center;justify-content:space-between;}
+.t-step{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.t-step-emoji{font-size:22px;}
+.t-step-label{font-size:10px;font-weight:600;color:var(--g600);}
+.t-step.dim .t-step-emoji{filter:grayscale(1) opacity(0.35);}
+.t-step.dim .t-step-label{color:var(--gray400);}
+.t-line{flex:1;height:2px;background:var(--g200);margin:0 4px;margin-bottom:16px;}
+.eta-tag{background:var(--g700);color:var(--w);border-radius:50px;padding:8px 20px;font-size:14px;font-weight:600;margin-bottom:8px;}
+.cont-btn{
+  width:100%;border:2px solid var(--g700);background:transparent;color:var(--g700);
+  font-family:var(--fb);font-size:15px;font-weight:600;padding:14px;
+  border-radius:var(--r16);cursor:pointer;margin-top:16px;
+}
+
+/* ===== PROFILE SCREEN ===== */
+.profile-header{background:var(--g700);padding:0 20px 24px;flex-shrink:0;text-align:center;}
+.profile-avatar{width:72px;height:72px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 10px;}
+.profile-name{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--w);}
+.profile-email{font-size:13px;color:var(--g200);}
+.profile-list{padding:16px 20px;}
+.profile-section-title{font-size:11px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:10px;margin-top:4px;}
+.profile-item{
+  background:var(--w);border-radius:var(--r12);padding:14px 16px;
+  display:flex;align-items:center;gap:12px;margin-bottom:8px;
+  border:1px solid var(--gray150);cursor:pointer;transition:background 0.15s;
+}
+.profile-item:active{background:var(--gray50);}
+.pi-icon{font-size:20px;width:32px;text-align:center;}
+.pi-label{flex:1;font-size:14px;font-weight:500;color:var(--gray800);}
+.pi-arrow{font-size:12px;color:var(--gray400);}
+
+/* ===== NOTIFICATION TOAST ===== */
+.toast{
+  position:fixed;top:calc(var(--safe-top) + 16px);left:50%;transform:translateX(-50%) translateY(-120px);
+  background:var(--gray800);color:var(--w);border-radius:50px;padding:10px 20px;
+  font-size:13px;font-weight:500;z-index:9999;transition:transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+  max-width:calc(100% - 40px);text-align:center;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ===== INSTALL BANNER ===== */
+.install-banner{
+  position:fixed;bottom:calc(64px + var(--safe-bot));left:50%;transform:translateX(-50%);
+  width:calc(100% - 40px);max-width:390px;
+  background:var(--g700);border-radius:var(--r16);padding:14px 16px;
+  display:flex;align-items:center;gap:12px;z-index:800;
+  box-shadow:0 8px 32px rgba(0,0,0,0.25);
+  animation:slideUp 0.4s ease;
+}
+@keyframes slideUp{from{transform:translateX(-50%) translateY(80px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
+.ib-icon{font-size:28px;flex-shrink:0;}
+.ib-text{flex:1;}
+.ib-title{font-size:13px;font-weight:600;color:var(--w);}
+.ib-sub{font-size:11px;color:var(--g200);margin-top:2px;}
+.ib-btn{background:var(--w);color:var(--g700);border:none;border-radius:50px;padding:7px 14px;font-family:var(--fb);font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;}
+.ib-close{background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;flex-shrink:0;}
+
+/* ===== COMING SOON CARD ===== */
+.coming-card{
+  margin:16px 20px;background:linear-gradient(135deg,var(--g800),var(--g600));
+  border-radius:var(--r20);padding:28px 20px;text-align:center;position:relative;overflow:hidden;
+}
+.coming-card::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.coming-card h3{font-family:var(--fh);font-size:20px;font-weight:800;color:var(--w);margin-bottom:8px;}
+.coming-card p{font-size:13px;color:var(--g200);line-height:1.5;margin-bottom:20px;}
+.coming-icons{display:flex;justify-content:center;gap:12px;margin-bottom:18px;}
+.coming-icon-slot{width:52px;height:52px;background:rgba(255,255,255,0.1);border:2px dashed rgba(255,255,255,0.3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;}
+.notify-input-row{display:flex;gap:0;background:rgba(255,255,255,0.12);border-radius:50px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);}
+.notify-input{flex:1;background:transparent;border:none;padding:11px 16px;font-family:var(--fb);font-size:13px;color:var(--w);outline:none;}
+.notify-input::placeholder{color:rgba(255,255,255,0.5);}
+.notify-btn{background:var(--gold);color:var(--gray900);border:none;padding:11px 16px;font-family:var(--fb);font-size:12px;font-weight:700;cursor:pointer;}
+
+/* SKELETON LOADERS */
+.skeleton{background:linear-gradient(90deg,var(--gray150) 25%,var(--gray200) 50%,var(--gray150) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+/* SCROLL SECTIONS */
+.scroll-section{margin-bottom:18px;}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HOME SCREEN -->
+<div class="screen active" id="screen-home">
+  <div class="status-bar">
+    <span class="status-time" id="clock">9:41</span>
+    <div class="status-icons"><span>📶</span><span>🔋</span></div>
+  </div>
+  <div class="app-header">
+    <div class="app-header-row">
+      <div class="header-logo">
+        <div class="header-logo-icon">🛒</div>
+        <div class="header-logo-text">
+          <b>Magunas</b>
+          <span>SUPERMARKET</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" onclick="goToCart()">🛒<span class="badge" id="nav-cart-badge" style="display:none">0</span></button>
+        <button class="icon-btn" onclick="goScreen('profile')">👤</button>
+      </div>
+    </div>
+    <div class="location-chip" onclick="goScreen('branches')">
+      📍 <span id="home-branch">Tap to set your branch</span> ▾
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" placeholder="Search groceries, brands..." readonly onclick="showToast('Search coming soon! Products landing shortly.')">
+    </div>
+  </div>
+
+  <!-- PROMO CAROUSEL -->
+  <div class="promo-scroll">
+    <div class="promo-card">
+      <div class="promo-card-emoji">🥦</div>
+      <span class="promo-tag">🌿 Fresh Today</span>
+      <div class="promo-title">Farm Fresh Produce</div>
+      <div class="promo-sub">Delivered from local farms daily</div>
+      <button class="promo-btn" style="color:var(--g700);" onclick="goScreen('shop')">Shop Now →</button>
+    </div>
+    <div class="promo-card">
+      <div class="promo-card-emoji">🛵</div>
+      <span class="promo-tag">🚀 Fast Delivery</span>
+      <div class="promo-title">Free Delivery Over KSh 1,500</div>
+      <div class="promo-sub">Via Glovo in 30–60 min</div>
+      <button class="promo-btn" style="color:#1a4fa8;" onclick="goScreen('shop')">Order Now →</button>
+    </div>
+    <div class="promo-card">
+      <div class="promo-card-emoji">🎉</div>
+      <span class="promo-tag">💰 Savings</span>
+      <div class="promo-title">Weekend Specials</div>
+      <div class="promo-sub">Up to 30% off selected items</div>
+      <button class="promo-btn" style="color:#8b2f67;" onclick="goScreen('shop')">View Deals →</button>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="scroll-section">
+    <div class="sec-head">
+      <span class="sec-title">Categories</span>
+      <span class="sec-link" onclick="goScreen('shop')">See all →</span>
+    </div>
+    <div class="cats-scroll" id="home-cats"></div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="scroll-section">
+    <div class="sec-head">
+      <span class="sec-title">Popular Items</span>
+      <span class="sec-link" onclick="goScreen('shop')">View all →</span>
+    </div>
+    <div class="products-grid" id="home-products"></div>
+  </div>
+
+  <!-- COMING SOON -->
+  <div class="coming-card" style="margin-bottom:8px;">
+    <div class="coming-icons">
+      <div class="coming-icon-slot">🥩</div>
+      <div class="coming-icon-slot">🧴</div>
+      <div class="coming-icon-slot">🍞</div>
+      <div class="coming-icon-slot">🥤</div>
+    </div>
+    <h3>More Products Coming Soon 🚀</h3>
+    <p>We're stocking our virtual shelves. Be the first to know when we go live with thousands of products!</p>
+    <div class="notify-input-row">
+      <input class="notify-input" type="email" placeholder="your@email.com" id="notify-email">
+      <button class="notify-btn" onclick="handleNotify()">Notify Me</button>
+    </div>
+  </div>
+
+  <!-- PAYMENT METHODS MINI -->
+  <div style="margin:16px 20px 8px;background:var(--w);border-radius:var(--r16);padding:16px;border:1px solid var(--gray150);">
+    <div style="font-family:var(--fh);font-size:14px;font-weight:700;color:var(--gray800);margin-bottom:12px;">We Accept</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="background:var(--gray50);border:1px solid var(--gray200);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--gray700);">📱 M-Pesa</div>
+      <div style="background:var(--gray50);border:1px solid var(--gray200);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--gray700);">💳 Visa/Mastercard</div>
+      <div style="background:var(--gray50);border:1px solid var(--gray200);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--gray700);">💵 Cash on Delivery</div>
+    </div>
+  </div>
+
+  <div class="sec-space"></div>
+</div>
+
+<!-- SHOP SCREEN -->
+<div class="screen" id="screen-shop">
+  <div class="status-bar">
+    <span class="status-time" id="clock2">9:41</span>
+    <div class="status-icons"><span>📶</span><span>🔋</span></div>
+  </div>
+  <div class="app-header">
+    <div class="app-header-row">
+      <div style="font-family:var(--fh);font-size:20px;font-weight:800;color:var(--w);">Shop</div>
+      <button class="icon-btn" onclick="goToCart()">🛒<span class="badge" id="shop-cart-badge" style="display:none">0</span></button>
+    </div>
+    <div style="margin-top:12px;">
+      <input class="search-input" placeholder="Search products..." readonly onclick="showToast('Search launching with full product catalogue!')">
+    </div>
+  </div>
+  <div class="cats-scroll" style="padding:14px 20px 4px;" id="shop-cats"></div>
+  <div class="products-grid" style="margin-top:14px;" id="shop-products"></div>
+  <div style="margin:16px 20px 8px;background:linear-gradient(135deg,var(--g700),var(--g600));border-radius:var(--r16);padding:20px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:8px;">🛍️</div>
+    <div style="font-family:var(--fh);font-size:16px;font-weight:700;color:var(--w);margin-bottom:6px;">Full Catalogue Coming Soon</div>
+    <div style="font-size:13px;color:var(--g200);">Thousands of products from your nearest Magunas branch</div>
+  </div>
+  <div class="sec-space"></div>
+</div>
+
+<!-- BRANCHES SCREEN -->
+<div class="screen" id="screen-branches">
+  <div class="status-bar">
+    <span class="status-time" id="clock3">9:41</span>
+    <div class="status-icons"><span>📶</span><span>🔋</span></div>
+  </div>
+  <div class="branches-header">
+    <div class="branches-screen-title">Our Branches</div>
+    <div class="branches-screen-sub">29 locations across Kenya</div>
+  </div>
+  <button class="detect-location-btn" onclick="detectLocation()">
+    <span style="font-size:20px;">📡</span>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;">
+      <span id="detect-btn-label">Use my current location</span>
+      <span style="font-size:11px;color:var(--g500);font-weight:400;">Automatically find the nearest branch</span>
+    </div>
+  </button>
+  <div style="padding:12px 20px 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray400);">All Branches</div>
+  <div class="branches-list-scroll" id="branches-list"></div>
+</div>
+
+<!-- CART SCREEN -->
+<div class="screen" id="screen-cart">
+  <div class="status-bar">
+    <span class="status-time" id="clock4">9:41</span>
+    <div class="status-icons"><span>📶</span><span>🔋</span></div>
+  </div>
+  <div class="cart-header">
+    <div class="cart-screen-title">My Cart</div>
+    <div class="cart-screen-sub" id="cart-branch-label">Select a branch to start</div>
+  </div>
+  <div id="cart-content"></div>
+</div>
+
+<!-- CHECKOUT SCREEN -->
+<div class="screen checkout-screen" id="screen-checkout">
+  <div class="status-bar">
+    <span class="status-time" id="clock5">9:41</span>
+    <div class="status-icons"><span>📶</span><span>🔋</span></div>
+  </div>
+  <div class="checkout-header">
+    <button class="back-btn" onclick="goScreen('cart')">←</button>
+    <div class="checkout-header-text">
+      <h2>Checkout</h2>
+      <p>Almost there! Fill in delivery details</p>
+    </div>
+  </div>
+  <div class="checkout-body" id="checkout-form-body">
+    <div class="field-section">
+      <h3>📦 Delivery Details</h3>
+      <div class="field-row">
+        <div class="field-group"><label class="field-label">First Name</label><input class="field-input" id="f-fname" placeholder="Wanjiru" /></div>
+        <div class="field-group"><label class="field-label">Last Name</label><input class="field-input" id="f-lname" placeholder="Kamau" /></div>
+      </div>
+      <div class="field-group"><label class="field-label">Phone Number</label><input class="field-input" id="f-phone" type="tel" placeholder="0712 345 678" /></div>
+      <div class="field-group"><label class="field-label">Delivery Address</label><input class="field-input" id="f-address" placeholder="Building, Street, Estate" /></div>
+      <div class="field-group"><label class="field-label">Instructions (optional)</label><input class="field-input" id="f-notes" placeholder="Gate number, call on arrival…" /></div>
+    </div>
+
+    <div class="field-section">
+      <h3>💳 Payment Method</h3>
+      <div class="pay-options">
+        <div class="pay-opt selected" onclick="selectPay(this,'mpesa')"><div class="pay-opt-icon">📱</div><div class="pay-opt-name">M-Pesa</div></div>
+        <div class="pay-opt" onclick="selectPay(this,'card')"><div class="pay-opt-icon">💳</div><div class="pay-opt-name">Card</div></div>
+        <div class="pay-opt" onclick="selectPay(this,'cash')"><div class="pay-opt-icon">💵</div><div class="pay-opt-name">Cash</div></div>
+      </div>
+      <div id="mpesa-field" style="margin-top:12px;">
+        <div class="field-group"><label class="field-label">M-Pesa Number</label><input class="field-input" id="f-mpesa" type="tel" placeholder="0712 345 678" /></div>
+        <div style="font-size:11px;color:var(--gray400);margin-top:4px;">You'll receive an STK push prompt to confirm</div>
+      </div>
+      <div id="card-field" style="display:none;margin-top:12px;">
+        <div class="field-group"><label class="field-label">Card Number</label><input class="field-input" placeholder="0000 0000 0000 0000" /></div>
+        <div class="field-row" style="margin-top:10px;">
+          <div class="field-group"><label class="field-label">Expiry</label><input class="field-input" placeholder="MM/YY" /></div>
+          <div class="field-group"><label class="field-label">CVV</label><input class="field-input" placeholder="123" /></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary-card">
+      <div class="os-row"><span>Subtotal</span><span id="co-sub">KSh 0</span></div>
+      <div class="os-row"><span>Delivery (Glovo)</span><span style="color:var(--g600);">KSh 150</span></div>
+      <div class="os-total"><span>Total</span><span id="co-total">KSh 150</span></div>
+    </div>
+
+    <button class="place-btn" onclick="placeOrder()">🛵 Place Order</button>
+    <div class="glovo-tag" style="margin-top:6px;">Powered by <strong style="color:#00a082;">Glovo</strong> • Live tracking included</div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-view" id="success-view" style="display:none;">
+    <div class="success-anim">✅</div>
+    <h2>Order Confirmed!</h2>
+    <p>Your Magunas order is packed and a Glovo rider is on the way to you.</p>
+    <div class="tracking-card">
+      <div class="tracking-steps">
+        <div class="t-step"><div class="t-step-emoji">✅</div><div class="t-step-label">Confirmed</div></div>
+        <div class="t-line"></div>
+        <div class="t-step"><div class="t-step-emoji">🏪</div><div class="t-step-label">Packing</div></div>
+        <div class="t-line"></div>
+        <div class="t-step dim"><div class="t-step-emoji">🛵</div><div class="t-step-label">On way</div></div>
+        <div class="t-line"></div>
+        <div class="t-step dim"><div class="t-step-emoji">🏠</div><div class="t-step-label">Delivered</div></div>
+      </div>
+    </div>
+    <div class="eta-tag">⏱ ETA: 35–50 minutes</div>
+    <p style="font-size:12px;color:var(--gray400);">You'll receive an SMS update from Glovo</p>
+    <button class="cont-btn" onclick="resetAfterOrder()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- PROFILE SCREEN -->
+<div class="screen" id="screen-profile">
+  <div class="status-bar">
+    <span class="status-time" id="clock6">9:41</span>
+    <div class="status-icons"><span>📶</span><span>🔋</span></div>
+  </div>
+  <div class="profile-header">
+    <div class="profile-avatar">👤</div>
+    <div class="profile-name">Welcome!</div>
+    <div class="profile-email">Sign in for a better experience</div>
+  </div>
+  <div class="profile-list">
+    <div class="profile-section-title">My Account</div>
+    <div class="profile-item" onclick="showToast('Sign in coming soon!')"><span class="pi-icon">👤</span><span class="pi-label">Sign In / Register</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('Order history available after sign in')"><span class="pi-icon">📦</span><span class="pi-label">Order History</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('Saved addresses coming soon!')"><span class="pi-icon">📍</span><span class="pi-label">Saved Addresses</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('Payment methods coming soon!')"><span class="pi-icon">💳</span><span class="pi-label">Payment Methods</span><span class="pi-arrow">›</span></div>
+
+    <div class="profile-section-title" style="margin-top:16px;">Store</div>
+    <div class="profile-item" onclick="goScreen('branches')"><span class="pi-icon">🏪</span><span class="pi-label">Our 29 Branches</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('Promotions launching soon!')"><span class="pi-icon">🎉</span><span class="pi-label">Promotions & Offers</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('Loyalty programme coming soon!')"><span class="pi-icon">⭐</span><span class="pi-label">Magunas Rewards</span><span class="pi-arrow">›</span></div>
+
+    <div class="profile-section-title" style="margin-top:16px;">Help & Support</div>
+    <div class="profile-item" onclick="showToast('FAQs coming soon!')"><span class="pi-icon">❓</span><span class="pi-label">FAQs</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('Chat support coming soon!')"><span class="pi-icon">💬</span><span class="pi-label">Contact Support</span><span class="pi-arrow">›</span></div>
+    <div class="profile-item" onclick="showToast('App version 1.0.0')"><span class="pi-icon">📱</span><span class="pi-label">App Version</span><span class="pi-arrow" style="font-size:11px;color:var(--gray400);">v1.0.0</span></div>
+
+    <div style="text-align:center;margin-top:24px;font-size:12px;color:var(--gray400);">
+      <div style="font-weight:600;color:var(--g700);font-size:14px;">Magunas Supermarket</div>
+      Kenya's Favourite Neighbourhood Supermarket<br>
+      <span style="margin-top:4px;display:block;">© 2025 Magunas. All rights reserved.</span>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active" id="nav-home" onclick="goScreen('home')">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Home</span>
+  </button>
+  <button class="nav-item" id="nav-shop" onclick="goScreen('shop')">
+    <span class="nav-icon">🛍️</span>
+    <span class="nav-label">Shop</span>
+  </button>
+  <button class="nav-item" id="nav-branches" onclick="goScreen('branches')">
+    <span class="nav-icon">📍</span>
+    <span class="nav-label">Branches</span>
+  </button>
+  <button class="nav-item" id="nav-cart" onclick="goScreen('cart')">
+    <span class="nav-icon">🛒</span>
+    <span class="nav-label">Cart</span>
+  </button>
+  <button class="nav-item" id="nav-profile" onclick="goScreen('profile')">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Profile</span>
+  </button>
+</nav>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="install-banner" style="display:none;">
+  <div class="ib-icon">🛒</div>
+  <div class="ib-text">
+    <div class="ib-title">Add Magunas to Home Screen</div>
+    <div class="ib-sub">Shop faster with the app</div>
+  </div>
+  <button class="ib-btn" id="install-btn">Install</button>
+  <button class="ib-close" onclick="dismissInstall()">✕</button>
+</div>
+
+<script>
+/* ===== DATA ===== */
+const BRANCHES = [
+  {name:"Roasters Thika Road",type:"roasters",lat:-1.2241,lng:36.8798},
+  {name:"Ruaraka",type:"main",lat:-1.2472,lng:36.8743},
+  {name:"Kasarani",type:"main",lat:-1.2271,lng:36.8993},
+  {name:"Utawala",type:"main",lat:-1.2768,lng:36.9684},
+  {name:"Pangani",type:"main",lat:-1.2698,lng:36.8368},
+  {name:"Membley Main",type:"main",lat:-1.1850,lng:36.9540},
+  {name:"Jogoo Road",type:"main",lat:-1.2948,lng:36.8540},
+  {name:"Kahawa Wendani",type:"main",lat:-1.1843,lng:36.9266},
+  {name:"Kahawa West",type:"main",lat:-1.1868,lng:36.9066},
+  {name:"Kangemi",type:"main",lat:-1.2627,lng:36.7496},
+  {name:"Kayole Junction",type:"main",lat:-1.2778,lng:36.9068},
+  {name:"Wangige",type:"main",lat:-1.2130,lng:36.7296},
+  {name:"Membley Express",type:"express",lat:-1.1860,lng:36.9560},
+  {name:"Ruiru",type:"main",lat:-1.1476,lng:36.9609},
+  {name:"Thika",type:"main",lat:-1.0332,lng:37.0693},
+  {name:"Karuri",type:"main",lat:-1.1268,lng:36.8241},
+  {name:"Kabati",type:"main",lat:-0.9456,lng:37.1143},
+  {name:"Gakungu",type:"main",lat:-0.9221,lng:37.1532},
+  {name:"Kerugoya",type:"main",lat:-0.5004,lng:37.2836},
+  {name:"Embu",type:"main",lat:-0.5304,lng:37.4580},
+  {name:"Chuka",type:"main",lat:-0.3339,lng:37.6469},
+  {name:"Ngong",type:"main",lat:-1.3593,lng:36.6596},
+  {name:"Maragua",type:"main",lat:-0.7313,lng:37.1268},
+  {name:"Kitui",type:"main",lat:-1.3671,lng:38.0106},
+  {name:"Kutus",type:"main",lat:-0.5257,lng:37.3165},
+  {name:"Meru",type:"main",lat:0.0468,lng:37.6492},
+  {name:"Nyeri",type:"main",lat:-0.4167,lng:36.9500},
+];
+
+const CATEGORIES = [
+  {name:"Fresh Veg",icon:"🥦",bg:"#edfbf0"},
+  {name:"Meat",icon:"🥩",bg:"#fce8e8"},
+  {name:"Dairy",icon:"🥛",bg:"#fdf3e0"},
+  {name:"Bakery",icon:"🍞",bg:"#fff3e0"},
+  {name:"Drinks",icon:"🥤",bg:"#e8f4fc"},
+  {name:"Snacks",icon:"🍿",bg:"#f3e8ff"},
+  {name:"Household",icon:"🧴",bg:"#e8f8f5"},
+  {name:"Cereals",icon:"🌾",bg:"#fdf3e0"},
+  {name:"Frozen",icon:"❄️",bg:"#e8f0ff"},
+  {name:"Care",icon:"🧼",bg:"#fce8f3"},
+];
+
+const SAMPLE_PRODUCTS = [
+  {name:"Sukari Sukuma Wiki",emoji:"🥬",price:45,weight:"500g",cat:"Fresh Veg",badge:"Fresh"},
+  {name:"Chicken Thighs",emoji:"🍗",price:580,weight:"1kg",cat:"Meat",badge:"Popular",badgeType:"hot"},
+  {name:"Brookside Milk",emoji:"🥛",price:160,weight:"1L",cat:"Dairy",badge:"Fresh"},
+  {name:"Weetabix Original",emoji:"🌾",price:290,weight:"430g",cat:"Cereals",oldPrice:340},
+  {name:"Jogoo Maize Flour",emoji:"🌽",price:175,weight:"2kg",cat:"Cereals",badge:"Popular"},
+  {name:"Royco Cube Pack",emoji:"🧂",price:120,weight:"24pcs",cat:"Household"},
+  {name:"Bonzo Bread",emoji:"🍞",price:65,weight:"400g",cat:"Bakery",badge:"Fresh"},
+  {name:"Coca-Cola 500ml",emoji:"🥤",price:85,weight:"500ml",cat:"Drinks",oldPrice:95},
+];
+
+/* ===== STATE ===== */
+let currentScreen = 'home';
+let selectedBranch = null;
+let cart = [];
+let selectedPay = 'mpesa';
+let deferredInstallPrompt = null;
+
+/* ===== SCREEN NAVIGATION ===== */
+function goScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  document.getElementById('screen-' + name).scrollTop = 0;
+  currentScreen = name;
+}
+
+function goToCart() { goScreen('cart'); }
+
+/* ===== CLOCK ===== */
+function updateClock() {
+  const now = new Date();
+  const t = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+  document.querySelectorAll('[id^="clock"]').forEach(el => el.textContent = t);
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+/* ===== TOAST ===== */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ===== RENDER CATEGORIES ===== */
+function renderCats(containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = CATEGORIES.map((c,i) => `
+    <div class="cat-chip ${i===0?'active':''}" style="--cat-bg:${c.bg}" onclick="filterCat(this,'${c.name}')">
+      <div class="cat-chip-icon" style="width:44px;height:44px;background:${c.bg};border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">${c.icon}</div>
+      <div class="cat-chip-name">${c.name}</div>
+    </div>
+  `).join('');
+}
+
+function filterCat(el, name) {
+  el.closest('.cats-scroll').querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  showToast(`${name} products launching soon!`);
+}
+
+/* ===== RENDER PRODUCTS ===== */
+function renderProducts(containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = SAMPLE_PRODUCTS.map((p,i) => `
+    <div class="prod-card">
+      <div class="prod-img" style="background:${CATEGORIES.find(c=>c.name===p.cat)?.bg || '#f4f4f0'}">
+        ${p.badge ? `<div class="prod-badge-tag ${p.badgeType||''}">${p.badge}</div>` : ''}
+        ${p.emoji}
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-weight">${p.weight}</div>
+        <div class="prod-row">
+          <div class="prod-price">
+            KSh ${p.price}
+            ${p.oldPrice ? `<small>KSh ${p.oldPrice}</small>` : ''}
+          </div>
+          <button class="add-btn" onclick="addToCart(${i})">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ===== CART ===== */
+function addToCart(idx) {
+  if (!selectedBranch) {
+    showToast('Please select your nearest branch first 📍');
+    setTimeout(() => goScreen('branches'), 1000);
+    return;
+  }
+  const p = SAMPLE_PRODUCTS[idx];
+  const ex = cart.find(i => i.name === p.name);
+  if (ex) ex.qty++;
+  else cart.push({...p, qty: 1});
+  updateCartBadges();
+  showToast(`${p.emoji} ${p.name} added to cart!`);
+}
+
+function updateCartBadges() {
+  const total = cart.reduce((a,i) => a + i.qty, 0);
+  ['nav-cart-badge','shop-cart-badge'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = total; el.style.display = total > 0 ? 'flex' : 'none'; }
+  });
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  updateCartBadges();
+  renderCartScreen();
+}
+
+function renderCartScreen() {
+  const content = document.getElementById('cart-content');
+  const branchLabel = document.getElementById('cart-branch-label');
+  branchLabel.textContent = selectedBranch ? `Delivering from ${selectedBranch}` : 'Select a branch first';
+
+  if (cart.length === 0) {
+    content.innerHTML = `
+      <div class="cart-empty-state">
+        <div class="cart-empty-icon">🛒</div>
+        <div class="cart-empty-title">Your cart is empty</div>
+        <div class="cart-empty-sub">Add items from the shop to get started</div>
+        <button style="margin-top:16px;background:var(--g700);color:var(--w);border:none;border-radius:var(--r12);padding:12px 24px;font-family:var(--fb);font-size:14px;font-weight:600;cursor:pointer;" onclick="goScreen('shop')">Start Shopping →</button>
+      </div>`;
+    return;
+  }
+
+  const subtotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  const items = cart.map((item,idx) => `
+    <div class="cart-item-row">
+      <div class="ci-img">${item.emoji}</div>
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-price">KSh ${(item.price * item.qty).toLocaleString()}</div>
+      </div>
+      <div class="ci-qty">
+        <button class="ci-qty-btn" onclick="changeQty(${idx},-1)">−</button>
+        <span class="ci-qty-val">${item.qty}</span>
+        <button class="ci-qty-btn" onclick="changeQty(${idx},1)">+</button>
+      </div>
+    </div>
+  `).join('');
+
+  content.innerHTML = `
+    <div class="cart-list">${items}</div>
+    <div class="cart-summary">
+      <div class="cart-summary-row"><span>Subtotal</span><span>KSh ${subtotal.toLocaleString()}</span></div>
+      <div class="cart-summary-row"><span>Glovo delivery</span><span style="color:var(--g600);">KSh 150</span></div>
+      <div class="cart-summary-total"><span>Total</span><span>KSh ${(subtotal+150).toLocaleString()}</span></div>
+      <button class="checkout-cta" onclick="openCheckout()">🛵 Proceed to Checkout</button>
+      <div class="glovo-tag">Delivered by <strong style="color:#00a082;">Glovo</strong> • 30–60 min</div>
+    </div>`;
+}
+
+function openCheckout() {
+  if (!selectedBranch) { showToast('Please select your branch first'); return; }
+  const subtotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  document.getElementById('co-sub').textContent = 'KSh ' + subtotal.toLocaleString();
+  document.getElementById('co-total').textContent = 'KSh ' + (subtotal+150).toLocaleString();
+  document.getElementById('checkout-form-body').style.display = 'block';
+  document.getElementById('success-view').style.display = 'none';
+  goScreen('checkout');
+}
+
+/* ===== BRANCHES ===== */
+function renderBranches(list) {
+  const el = document.getElementById('branches-list');
+  el.innerHTML = list.map(b => `
+    <div class="branch-row ${selectedBranch === b.name ? 'selected' : ''}" onclick="selectBranch('${b.name}')">
+      <div class="branch-row-pin">${b.type==='roasters'?'☕':'🏪'}</div>
+      <div class="branch-row-info">
+        <div class="branch-row-name">${b.name}</div>
+        <div><span class="branch-type-pill btp-${b.type}">${b.type==='main'?'Main':b.type==='express'?'Express':'Roasters'}</span></div>
+      </div>
+      <div class="branch-row-dist">${b.dist ? b.dist.toFixed(1)+' km' : selectedBranch===b.name?'✓ Selected':'Select'}</div>
+    </div>
+  `).join('');
+}
+
+function selectBranch(name) {
+  selectedBranch = name;
+  document.getElementById('home-branch').textContent = name;
+  renderBranches(BRANCHES);
+  showToast(`✅ Branch set: ${name}`);
+  setTimeout(() => goScreen('home'), 800);
+}
+
+function dist(lat1,lng1,lat2,lng2) {
+  const R=6371,dLat=(lat2-lat1)*Math.PI/180,dLng=(lng2-lng1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+function detectLocation() {
+  const btn = document.getElementById('detect-btn-label');
+  if (!navigator.geolocation) { showToast('Geolocation not supported on this device'); return; }
+  btn.textContent = '🔍 Detecting your location…';
+  navigator.geolocation.getCurrentPosition(pos => {
+    const {latitude:lat, longitude:lng} = pos.coords;
+    const sorted = BRANCHES.map(b => ({...b, dist: dist(lat,lng,b.lat,b.lng)})).sort((a,b)=>a.dist-b.dist);
+    btn.textContent = `📍 Nearest: ${sorted[0].name}`;
+    renderBranches(sorted);
+    selectBranch(sorted[0].name);
+  }, () => {
+    btn.textContent = '❌ Could not detect. Choose manually.';
+    showToast('Location access denied. Select branch manually.');
+  });
+}
+
+/* ===== CHECKOUT ===== */
+function selectPay(el, method) {
+  document.querySelectorAll('.pay-opt').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPay = method;
+  document.getElementById('mpesa-field').style.display = method==='mpesa'?'block':'none';
+  document.getElementById('card-field').style.display = method==='card'?'block':'none';
+}
+
+function placeOrder() {
+  const fname = document.getElementById('f-fname').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const addr = document.getElementById('f-address').value.trim();
+  if (!fname || !phone || !addr) { showToast('Please fill in all required fields'); return; }
+  document.getElementById('checkout-form-body').style.display = 'none';
+  document.getElementById('success-view').style.display = 'flex';
+  document.getElementById('success-view').style.flexDirection = 'column';
+  cart = [];
+  updateCartBadges();
+}
+
+function resetAfterOrder() {
+  document.getElementById('checkout-form-body').style.display = 'block';
+  document.getElementById('success-view').style.display = 'none';
+  goScreen('home');
+}
+
+/* ===== NOTIFICATIONS ===== */
+function handleNotify() {
+  const email = document.getElementById('notify-email').value.trim();
+  if (!email || !email.includes('@')) { showToast('Please enter a valid email address'); return; }
+  showToast("✅ You're on the list! We'll notify you soon.");
+  document.getElementById('notify-email').value = '';
+}
+
+/* ===== PWA INSTALL ===== */
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const banner = document.getElementById('install-banner');
+  banner.style.display = 'flex';
+  document.getElementById('install-btn').onclick = async () => {
+    deferredInstallPrompt.prompt();
+    const {outcome} = await deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') showToast('✅ Magunas app installed!');
+    dismissInstall();
+  };
+});
+
+function dismissInstall() {
+  document.getElementById('install-banner').style.display = 'none';
+}
+
+window.addEventListener('appinstalled', () => showToast('🎉 Magunas is now installed!'));
+
+/* ===== SERVICE WORKER ===== */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+
+/* ===== INIT ===== */
+renderCats('home-cats');
+renderCats('shop-cats');
+renderProducts('home-products');
+renderProducts('shop-products');
+renderBranches(BRANCHES);
+renderCartScreen();
+
+// watch for cart screen navigation
+const cartNavBtn = document.getElementById('nav-cart');
+cartNavBtn.addEventListener('click', renderCartScreen);
+</script>
+</body>
+</html>

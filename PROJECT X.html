@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magunas Supermarket – Fresh. Local. Always.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-50: #edfbf0;
+    --green-100: #c8f5d2;
+    --green-200: #8fe8a4;
+    --green-400: #3cc75a;
+    --green-500: #22a83a;
+    --green-600: #178a2d;
+    --green-700: #0f6b21;
+    --green-800: #084d17;
+    --green-900: #03300d;
+    --gold: #f5a623;
+    --gold-light: #fdf3e0;
+    --white: #ffffff;
+    --gray-50: #fafaf9;
+    --gray-100: #f4f4f0;
+    --gray-200: #e8e8e2;
+    --gray-300: #d0d0c8;
+    --gray-400: #9a9a92;
+    --gray-600: #5a5a54;
+    --gray-800: #2c2c28;
+    --gray-900: #1a1a17;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 32px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+    --shadow-md: 0 6px 24px rgba(0,0,0,0.1);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--gray-50);
+    color: var(--gray-800);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--green-700);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+    box-shadow: 0 2px 20px rgba(15,107,33,0.3);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--white);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-logo-text span:first-child {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.3px;
+    line-height: 1;
+  }
+
+  .nav-logo-text span:last-child {
+    font-size: 11px;
+    color: var(--green-200);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--green-100);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 6px 14px;
+    color: var(--white);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .nav-location:hover { background: rgba(255,255,255,0.2); }
+
+  .nav-location svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .btn-order {
+    background: var(--gold);
+    color: var(--gray-900);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-order:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(245,166,35,0.4);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--green-700) 0%, var(--green-600) 40%, var(--green-500) 100%);
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 5%;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: 40%;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--green-100);
+    font-weight: 500;
+    margin-bottom: 28px;
+    letter-spacing: 0.3px;
+  }
+
+  .hero-badge span { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; display: inline-block; }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    color: var(--green-100);
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--green-700);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover {
+    background: var(--green-50);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: 2px solid rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-card-stack {
+    position: relative;
+    width: 380px;
+    height: 420px;
+  }
+
+  .hero-img-card {
+    position: absolute;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s;
+  }
+
+  .hero-img-card:nth-child(1) {
+    width: 260px;
+    height: 300px;
+    top: 0;
+    left: 20px;
+    background: linear-gradient(145deg, #c8f5d2, #8fe8a4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    transform: rotate(-3deg);
+  }
+
+  .hero-img-card:nth-child(2) {
+    width: 220px;
+    height: 260px;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(145deg, #fdf3e0, #fac775);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    transform: rotate(4deg);
+  }
+
+  .hero-stat-pill {
+    position: absolute;
+    background: var(--white);
+    border-radius: 50px;
+    padding: 10px 18px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+  }
+
+  .hero-stat-pill.top-left { top: 40px; left: -30px; }
+  .hero-stat-pill.bottom-right { bottom: 60px; right: -20px; }
+
+  .hero-stat-pill .icon { font-size: 22px; }
+  .hero-stat-pill .text { display: flex; flex-direction: column; }
+  .hero-stat-pill .number { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--green-700); }
+  .hero-stat-pill .label { font-size: 11px; color: var(--gray-400); }
+
+  /* ===== DELIVERY BAR ===== */
+  .delivery-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 20px;
+    overflow: hidden;
+  }
+
+  .delivery-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+
+  .glovo-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #00a082;
+    border-radius: 8px;
+    padding: 6px 14px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .glovo-circle {
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #00a082;
+  }
+
+  .delivery-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+
+  .delivery-meta span { display: flex; align-items: center; gap: 5px; }
+
+  .delivery-meta svg { width: 14px; height: 14px; color: var(--green-500); }
+
+  .branch-locator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-700);
+    cursor: pointer;
+    background: var(--green-50);
+    border: 1px solid var(--green-200);
+    border-radius: 8px;
+    padding: 7px 14px;
+    transition: all 0.2s;
+  }
+
+  .branch-locator:hover { background: var(--green-100); }
+  .branch-locator svg { width: 14px; height: 14px; }
+
+  /* ===== LOCATION MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 520px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-header {
+    background: var(--green-700);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: 28px 28px 24px;
+  }
+
+  .modal-header h2 {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .modal-header p { color: var(--green-200); font-size: 14px; }
+
+  .modal-body { padding: 24px 28px 28px; }
+
+  .detect-btn {
+    width: 100%;
+    background: var(--green-50);
+    border: 2px dashed var(--green-300, #6ab87a);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--green-700);
+    transition: all 0.2s;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .detect-btn:hover { background: var(--green-100); }
+
+  .modal-divider {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray-400);
+    position: relative;
+    margin: 4px 0 20px;
+  }
+
+  .modal-divider::before, .modal-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  .modal-divider::before { left: 0; }
+  .modal-divider::after { right: 0; }
+
+  .branches-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .branch-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--gray-50);
+  }
+
+  .branch-item:hover, .branch-item.selected {
+    border-color: var(--green-500);
+    background: var(--green-50);
+  }
+
+  .branch-item-left { display: flex; flex-direction: column; }
+  .branch-item-name { font-weight: 500; font-size: 14px; color: var(--gray-800); }
+  .branch-item-area { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+  .branch-item-right { font-size: 12px; color: var(--green-600); font-weight: 500; }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--white);
+    font-size: 18px;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(255,255,255,0.25); }
+  .modal-header { position: relative; }
+
+  /* ===== CATEGORIES ===== */
+  .section { padding: 70px 5%; }
+  .section-alt { background: var(--white); }
+
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .section-head h2 {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .section-head h2 em { font-style: normal; color: var(--green-600); }
+
+  .see-all {
+    color: var(--green-600);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+    white-space: nowrap;
+  }
+
+  .see-all:hover { gap: 8px; }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .category-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 24px 16px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-alt .category-card { background: var(--gray-50); }
+
+  .category-card:hover {
+    border-color: var(--green-400);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .category-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .category-name { font-size: 13px; font-weight: 600; color: var(--gray-700); line-height: 1.3; }
+  .category-count { font-size: 11px; color: var(--gray-400); }
+
+  /* ===== PRODUCT GRID ===== */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    border-color: var(--green-300, #6ab87a);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .product-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    position: relative;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--green-500);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 50px;
+  }
+
+  .product-badge.offer { background: #e24b4a; }
+
+  .product-info { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .product-name { font-size: 14px; font-weight: 600; color: var(--gray-800); line-height: 1.3; }
+  .product-weight { font-size: 12px; color: var(--gray-400); }
+
+  .product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .product-price { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--green-700); }
+  .product-price span { font-size: 12px; font-weight: 400; color: var(--gray-400); text-decoration: line-through; }
+
+  .add-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--green-600);
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .add-btn:hover { background: var(--green-700); transform: scale(1.1); }
+
+  /* ===== COMING SOON BANNER ===== */
+  .coming-soon {
+    background: linear-gradient(135deg, var(--green-800) 0%, var(--green-600) 100%);
+    border-radius: var(--radius-xl);
+    padding: 60px 5%;
+    text-align: center;
+    margin: 0 5% 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coming-soon::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .coming-soon h2 {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .coming-soon p { color: var(--green-200); font-size: 17px; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  .coming-soon-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .product-slot {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.1);
+    border: 2px dashed rgba(255,255,255,0.3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    animation: pulse 2s infinite;
+  }
+
+  .product-slot:nth-child(2) { animation-delay: 0.3s; }
+  .product-slot:nth-child(3) { animation-delay: 0.6s; }
+  .product-slot:nth-child(4) { animation-delay: 0.9s; }
+  .product-slot:nth-child(5) { animation-delay: 1.2s; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* ===== BRANCHES ===== */
+  .branches-section { background: var(--gray-100); }
+
+  .branches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .branch-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 18px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .branch-card:hover {
+    border-color: var(--green-400);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .branch-pin {
+    width: 36px;
+    height: 36px;
+    background: var(--green-50);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .branch-info { display: flex; flex-direction: column; }
+  .branch-name { font-size: 13px; font-weight: 600; color: var(--gray-800); line-height: 1.3; }
+  .branch-type {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .branch-type.main { background: var(--green-50); color: var(--green-700); }
+  .branch-type.express { background: var(--gold-light); color: #b87a00; }
+  .branch-type.roasters { background: #fce8f3; color: #8b2f67; }
+
+  /* ===== DELIVERY STEPS ===== */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    align-items: start;
+  }
+
+  .step {
+    text-align: center;
+    padding: 32px 20px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    position: relative;
+  }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    background: var(--green-700);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--white);
+    margin: 0 auto 20px;
+  }
+
+  .step-icon { font-size: 36px; margin-bottom: 16px; }
+  .step h3 { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--gray-800); margin-bottom: 10px; }
+  .step p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+
+  /* ===== PAYMENT ===== */
+  .payment-section {
+    background: var(--green-700);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .payment-section h2 {
+    font-family: var(--font-head);
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+
+  .payment-section p { color: var(--green-200); font-size: 16px; margin-bottom: 44px; }
+
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .payment-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 260px;
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .payment-card:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-4px);
+  }
+
+  .payment-icon { font-size: 44px; margin-bottom: 16px; }
+  .payment-name { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .payment-desc { font-size: 13px; color: var(--green-200); line-height: 1.5; }
+
+  /* ===== OFFER STRIP ===== */
+  .offer-strip {
+    background: var(--gold);
+    overflow: hidden;
+    height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .offer-inner {
+    display: flex;
+    gap: 60px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .offer-inner span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-900);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+  }
+
+  /* ===== CART SIDEBAR ===== */
+  .cart-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 800;
+    background: var(--green-700);
+    border: none;
+    border-radius: 50px;
+    padding: 14px 22px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 24px rgba(15,107,33,0.4);
+    transition: all 0.2s;
+  }
+
+  .cart-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(15,107,33,0.5); }
+
+  .cart-count {
+    background: var(--gold);
+    color: var(--gray-900);
+    font-size: 12px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== CART PANEL ===== */
+  .cart-panel {
+    position: fixed;
+    top: 0;
+    right: -440px;
+    width: 420px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -4px 0 40px rgba(0,0,0,0.15);
+    z-index: 2000;
+    transition: right 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-panel.open { right: 0; }
+
+  .cart-panel-header {
+    background: var(--green-700);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .cart-panel-header h3 {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .cart-close {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    color: var(--white);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
+
+  .cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray-400);
+    font-size: 15px;
+  }
+
+  .cart-empty-icon { font-size: 56px; margin-bottom: 16px; }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .cart-item-img {
+    width: 52px;
+    height: 52px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 13px; font-weight: 500; color: var(--gray-800); }
+  .cart-item-price { font-size: 13px; color: var(--green-600); font-weight: 600; }
+
+  .cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gray-100);
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+
+  .qty-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--green-700);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: color 0.1s;
+  }
+
+  .qty-btn:hover { color: var(--green-900); }
+  .qty-val { font-size: 14px; font-weight: 600; color: var(--gray-800); min-width: 18px; text-align: center; }
+
+  .cart-footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 20px;
+    flex-shrink: 0;
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .cart-total-label { font-size: 14px; color: var(--gray-600); }
+  .cart-total-val { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--green-700); }
+
+  .checkout-btn {
+    width: 100%;
+    background: var(--green-600);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 10px;
+  }
+
+  .checkout-btn:hover { background: var(--green-700); }
+
+  .cart-glovo-note {
+    font-size: 12px;
+    color: var(--gray-400);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  /* ===== CHECKOUT OVERLAY ===== */
+  .checkout-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9990;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .checkout-overlay.active { display: flex; }
+
+  .checkout-modal {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+  }
+
+  .checkout-modal-head {
+    background: var(--green-700);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: 28px;
+    position: relative;
+  }
+
+  .checkout-modal-head h2 {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .checkout-modal-head p { color: var(--green-200); font-size: 14px; margin-top: 4px; }
+
+  .checkout-body { padding: 28px; }
+
+  .form-section { margin-bottom: 28px; }
+  .form-section h4 {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .form-row.single { grid-template-columns: 1fr; }
+
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .form-input {
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--gray-800);
+    transition: border-color 0.2s;
+    outline: none;
+    background: var(--gray-50);
+    width: 100%;
+  }
+
+  .form-input:focus { border-color: var(--green-500); background: var(--white); }
+
+  .payment-select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .pay-opt {
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pay-opt:hover { border-color: var(--green-400); }
+  .pay-opt.selected { border-color: var(--green-600); background: var(--green-50); }
+  .pay-opt-icon { font-size: 24px; }
+  .pay-opt-name { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+
+  .place-order-btn {
+    width: 100%;
+    background: var(--green-600);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 18px;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .place-order-btn:hover { background: var(--green-700); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--gray-900);
+    color: var(--gray-300);
+    padding: 60px 5% 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .footer-logo-text {
+    font-family: var(--font-head);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .footer-tagline { font-size: 14px; color: var(--gray-400); line-height: 1.6; margin-bottom: 24px; }
+
+  .footer-social { display: flex; gap: 10px; }
+
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .social-icon:hover { background: var(--green-700); }
+
+  .footer-col h4 {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 18px;
+    letter-spacing: 0.3px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: var(--gray-400); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--green-400); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  .footer-bottom-right { display: flex; gap: 16px; }
+  .footer-bottom-right a { color: var(--gray-400); text-decoration: none; }
+  .footer-bottom-right a:hover { color: var(--green-400); }
+
+  /* ===== SUCCESS STATE ===== */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 28px;
+  }
+
+  .success-screen.show { display: block; }
+  .success-icon { font-size: 72px; margin-bottom: 24px; }
+  .success-screen h2 { font-family: var(--font-head); font-size: 28px; font-weight: 800; color: var(--green-700); margin-bottom: 12px; }
+  .success-screen p { color: var(--gray-600); font-size: 16px; line-height: 1.6; margin-bottom: 24px; }
+
+  .tracking-pill {
+    background: var(--green-50);
+    border: 1px solid var(--green-200);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 0 auto 28px;
+    max-width: 320px;
+  }
+
+  .tracking-steps { display: flex; justify-content: space-between; align-items: center; gap: 4px; }
+
+  .t-step { text-align: center; }
+  .t-step-icon { font-size: 20px; }
+  .t-step-label { font-size: 10px; color: var(--gray-400); margin-top: 4px; }
+  .t-step.active .t-step-label { color: var(--green-700); font-weight: 600; }
+  .t-step.done .t-step-icon { filter: grayscale(0); }
+  .t-step:not(.active):not(.done) .t-step-icon { filter: grayscale(1) opacity(0.4); }
+
+  .t-line { flex: 1; height: 2px; background: var(--green-200); }
+
+  .notify-btn {
+    background: var(--green-600);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .notify-btn:hover { background: var(--green-700); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 5%; gap: 40px; min-height: auto; }
+    .hero-card-stack { width: 300px; height: 340px; margin: 0 auto; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .cart-panel { width: 100%; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .delivery-bar { overflow-x: auto; }
+    .hero-stat-pill.top-left { left: 0; }
+    .hero-stat-pill.bottom-right { right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- OFFER STRIP -->
+<div class="offer-strip" aria-hidden="true">
+  <div class="offer-inner">
+    <span>🎉 Free delivery on orders above KSh 1,500 via Glovo</span>
+    <span>🌿 Fresh farm produce delivered same day</span>
+    <span>💳 M-Pesa, Card & Cash accepted</span>
+    <span>🏪 29 branches across Kenya</span>
+    <span>🎉 Free delivery on orders above KSh 1,500 via Glovo</span>
+    <span>🌿 Fresh farm produce delivered same day</span>
+    <span>💳 M-Pesa, Card & Cash accepted</span>
+    <span>🏪 29 branches across Kenya</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🛒</div>
+    <div class="nav-logo-text">
+      <span>Magunas</span>
+      <span>SUPERMARKET</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#branches">Branches</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#payment">Payment</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="nav-location" onclick="openBranchModal()" id="nav-location-display">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span id="nav-location-text">Find my branch</span>
+    </div>
+    <a href="#" class="btn-order" onclick="openCartPanel(event)">
+      🛒 My Cart
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span></span>
+      Kenya's Favourite Neighbourhood Supermarket
+    </div>
+    <h1>Fresh Groceries,<br>Delivered to <em>Your Door</em></h1>
+    <p class="hero-desc">Shop from 29 Magunas branches across Kenya. We find your nearest store and deliver through Glovo — fast, fresh, and always affordable.</p>
+    <div class="hero-actions">
+      <a href="#categories" class="btn-primary">
+        🛍️ Start Shopping
+      </a>
+      <div class="btn-secondary" onclick="openBranchModal()" style="cursor:pointer;">
+        📍 Find My Branch
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="hero-img-card">🥦</div>
+      <div class="hero-img-card">🥩</div>
+
+      <div class="hero-stat-pill top-left">
+        <div class="icon">🚀</div>
+        <div class="text">
+          <span class="number">45 min</span>
+          <span class="label">Avg delivery</span>
+        </div>
+      </div>
+
+      <div class="hero-stat-pill bottom-right">
+        <div class="icon">🌿</div>
+        <div class="text">
+          <span class="number">10,000+</span>
+          <span class="label">Happy customers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY BAR -->
+<div class="delivery-bar">
+  <div class="delivery-bar-left">
+    <div class="glovo-badge">
+      <div class="glovo-circle">G</div>
+      Powered by Glovo
+    </div>
+    <div class="delivery-meta">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        30–60 min delivery
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Live order tracking
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Free over KSh 1,500
+      </span>
+    </div>
+  </div>
+  <div class="branch-locator" onclick="openBranchModal()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span id="selected-branch-label">Select your branch</span>
+  </div>
+</div>
+
+<!-- CATEGORIES SECTION -->
+<section class="section" id="categories">
+  <div class="section-head">
+    <h2>Shop by <em>Category</em></h2>
+    <a href="#" class="see-all">View all products →</a>
+  </div>
+
+  <div class="categories-grid">
+    <a href="#" class="category-card" onclick="filterCategory('Fresh Produce')">
+      <div class="category-icon" style="background:#edfbf0;">🥦</div>
+      <span class="category-name">Fresh Produce</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Meat & Poultry')">
+      <div class="category-icon" style="background:#fce8e8;">🥩</div>
+      <span class="category-name">Meat & Poultry</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Dairy')">
+      <div class="category-icon" style="background:#fdf3e0;">🥛</div>
+      <span class="category-name">Dairy & Eggs</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Bakery')">
+      <div class="category-icon" style="background:#fff3e0;">🍞</div>
+      <span class="category-name">Bakery</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Beverages')">
+      <div class="category-icon" style="background:#e8f4fc;">🥤</div>
+      <span class="category-name">Beverages</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Snacks')">
+      <div class="category-icon" style="background:#f3e8ff;">🍿</div>
+      <span class="category-name">Snacks</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Household')">
+      <div class="category-icon" style="background:#e8f8f5;">🧴</div>
+      <span class="category-name">Household</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Personal Care')">
+      <div class="category-icon" style="background:#fce8f3;">🧼</div>
+      <span class="category-name">Personal Care</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Cereals')">
+      <div class="category-icon" style="background:#fdf3e0;">🌾</div>
+      <span class="category-name">Cereals & Grains</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="#" class="category-card" onclick="filterCategory('Frozen')">
+      <div class="category-icon" style="background:#e8f0ff;">❄️</div>
+      <span class="category-name">Frozen Foods</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+  </div>
+</section>
+
+<!-- COMING SOON BANNER -->
+<div class="coming-soon">
+  <div class="coming-soon-icons">
+    <div class="product-slot">🥬</div>
+    <div class="product-slot">🍊</div>
+    <div class="product-slot">🥚</div>
+    <div class="product-slot">🍗</div>
+    <div class="product-slot">🧀</div>
+  </div>
+  <h2>Products Landing Soon 🚀</h2>
+  <p>We're stocking our virtual shelves with thousands of products from your favourite Magunas branches. Be the first to know when we go live!</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:0;max-width:400px;width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50px;overflow:hidden;">
+      <input type="email" placeholder="Enter your email address" style="flex:1;background:transparent;border:none;padding:14px 20px;color:white;font-size:14px;outline:none;font-family:'DM Sans',sans-serif;" oninput="this.style.color='white'" />
+      <button style="background:var(--gold);color:#1a1a17;border:none;padding:14px 24px;font-weight:600;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;" onclick="notifyMe(this)">Notify Me</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOW DELIVERY WORKS -->
+<section class="section section-alt" id="delivery">
+  <div class="section-head">
+    <h2>How <em>Delivery</em> Works</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-icon">📍</div>
+      <h3>Share your location</h3>
+      <p>Allow location access or select your area. We automatically find the nearest Magunas branch to you.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-icon">🛒</div>
+      <h3>Add to cart</h3>
+      <p>Browse categories and add your groceries to cart. Prices reflect your selected branch's inventory.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-icon">💳</div>
+      <h3>Choose payment</h3>
+      <p>Pay via M-Pesa, Visa/Mastercard, or cash on delivery — whichever works best for you.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-icon">🛵</div>
+      <h3>Glovo delivers</h3>
+      <p>Your order is handed off to a Glovo rider who delivers fresh to your doorstep in 30–60 minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRANCHES -->
+<section class="section branches-section" id="branches">
+  <div class="section-head">
+    <h2>Our <em>29 Branches</em> Across Kenya</h2>
+    <a href="#" class="see-all">View on map →</a>
+  </div>
+  <div class="branches-grid" id="branches-grid"></div>
+</section>
+
+<!-- PAYMENT -->
+<section class="section payment-section" id="payment">
+  <h2>Multiple Ways to Pay</h2>
+  <p>Choose the payment method that's most convenient for you</p>
+  <div class="payment-methods">
+    <div class="payment-card">
+      <div class="payment-icon">📱</div>
+      <div class="payment-name">M-Pesa</div>
+      <div class="payment-desc">Instant Lipa na M-Pesa. Enter your phone number and confirm on your phone. Fast and secure.</div>
+    </div>
+    <div class="payment-card">
+      <div class="payment-icon">💳</div>
+      <div class="payment-name">Card Payment</div>
+      <div class="payment-desc">Visa, Mastercard, debit or credit cards accepted. Secured by 256-bit encryption.</div>
+    </div>
+    <div class="payment-card">
+      <div class="payment-icon">💵</div>
+      <div class="payment-name">Cash on Delivery</div>
+      <div class="payment-desc">Prefer cash? Pay the Glovo rider when your order arrives. Change is provided.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-text">Magunas</div>
+      <p class="footer-tagline">Kenya's trusted neighbourhood supermarket. Fresh produce, quality groceries, and friendly service across 29 branches.</p>
+      <div class="footer-social">
+        <div class="social-icon">📘</div>
+        <div class="social-icon">📸</div>
+        <div class="social-icon">🐦</div>
+        <div class="social-icon">▶️</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Fresh Produce</a></li>
+        <li><a href="#">Meat & Poultry</a></li>
+        <li><a href="#">Dairy & Eggs</a></li>
+        <li><a href="#">Beverages</a></li>
+        <li><a href="#">Household</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Magunas</a></li>
+        <li><a href="#">Branches</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Promotions</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns Policy</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Magunas Supermarket. All rights reserved.</span>
+    <div class="footer-bottom-right">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CART BUTTON -->
+<button class="cart-btn" onclick="openCartPanel(event)">
+  🛒 Cart
+  <span class="cart-count" id="cart-count">0</span>
+</button>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-panel-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="cart-close" onclick="closeCartPanel()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>Your cart is empty</p>
+      <p style="font-size:13px;margin-top:8px;">Add items from the store to get started</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cart-total">KSh 0</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>
+    <p class="cart-glovo-note">🛵 Delivered via Glovo</p>
+  </div>
+</div>
+
+<!-- BRANCH MODAL -->
+<div class="modal-overlay" id="branch-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeBranchModal()">✕</button>
+      <h2>📍 Find Your Branch</h2>
+      <p>We'll deliver from the nearest branch to you</p>
+    </div>
+    <div class="modal-body">
+      <button class="detect-btn" onclick="detectLocation()">
+        📡 Detect my location automatically
+      </button>
+      <div class="modal-divider">or choose a branch manually</div>
+      <div class="branches-list" id="modal-branches-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkout-overlay">
+  <div class="checkout-modal">
+    <div class="checkout-modal-head">
+      <button class="modal-close" onclick="closeCheckout()">✕</button>
+      <h2>Complete Your Order</h2>
+      <p>Fill in your details to confirm delivery</p>
+    </div>
+    <div class="checkout-body" id="checkout-body">
+      <div class="form-section">
+        <h4>📦 Delivery Details</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-input" placeholder="e.g. Wanjiru" id="f-fname" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-input" placeholder="e.g. Kamau" id="f-lname" />
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" class="form-input" placeholder="e.g. 0712 345678" id="f-phone" />
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label>Delivery Address</label>
+            <input type="text" class="form-input" placeholder="Building, Street, Area" id="f-address" />
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label>Delivery Instructions (optional)</label>
+            <input type="text" class="form-input" placeholder="e.g. Gate 5, call when close" id="f-notes" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h4>💳 Payment Method</h4>
+        <div class="payment-select">
+          <div class="pay-opt selected" onclick="selectPayment(this,'mpesa')">
+            <div class="pay-opt-icon">📱</div>
+            <div class="pay-opt-name">M-Pesa</div>
+          </div>
+          <div class="pay-opt" onclick="selectPayment(this,'card')">
+            <div class="pay-opt-icon">💳</div>
+            <div class="pay-opt-name">Card</div>
+          </div>
+          <div class="pay-opt" onclick="selectPayment(this,'cash')">
+            <div class="pay-opt-icon">💵</div>
+            <div class="pay-opt-name">Cash</div>
+          </div>
+        </div>
+
+        <div id="mpesa-fields">
+          <div class="form-row single">
+            <div class="form-group">
+              <label>M-Pesa Number</label>
+              <input type="tel" class="form-input" placeholder="e.g. 0712 345678" id="f-mpesa" />
+            </div>
+          </div>
+          <p style="font-size:12px;color:#5a5a54;margin-top:-4px;">You'll receive an STK push to confirm payment</p>
+        </div>
+
+        <div id="card-fields" style="display:none;">
+          <div class="form-row single"><div class="form-group"><label>Card Number</label><input type="text" class="form-input" placeholder="0000 0000 0000 0000" id="f-card" /></div></div>
+          <div class="form-row">
+            <div class="form-group"><label>Expiry</label><input type="text" class="form-input" placeholder="MM/YY" /></div>
+            <div class="form-group"><label>CVV</label><input type="text" class="form-input" placeholder="123" /></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--gray-50);border-radius:12px;padding:16px;margin-bottom:20px;border:1px solid var(--gray-200);">
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#5a5a54;margin-bottom:6px;"><span>Subtotal</span><span id="co-subtotal">KSh 0</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#5a5a54;margin-bottom:6px;"><span>Delivery fee (Glovo)</span><span style="color:var(--green-600);">KSh 150</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:var(--green-700);padding-top:10px;border-top:1px solid var(--gray-200);"><span>Total</span><span id="co-total">KSh 150</span></div>
+      </div>
+
+      <button class="place-order-btn" onclick="placeOrder()">🛵 Place Order & Pay</button>
+    </div>
+
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✅</div>
+      <h2>Order Placed!</h2>
+      <p>Your Magunas order is confirmed and a Glovo rider has been assigned to pick it up.</p>
+
+      <div class="tracking-pill">
+        <div class="tracking-steps">
+          <div class="t-step active">
+            <div class="t-step-icon">✅</div>
+            <div class="t-step-label">Confirmed</div>
+          </div>
+          <div class="t-line"></div>
+          <div class="t-step active">
+            <div class="t-step-icon">🏪</div>
+            <div class="t-step-label">Packing</div>
+          </div>
+          <div class="t-line"></div>
+          <div class="t-step">
+            <div class="t-step-icon">🛵</div>
+            <div class="t-step-label">On the way</div>
+          </div>
+          <div class="t-line"></div>
+          <div class="t-step">
+            <div class="t-step-icon">🏠</div>
+            <div class="t-step-label">Delivered</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="color:var(--gray-400);font-size:14px;margin-bottom:24px;">Estimated delivery: <strong style="color:var(--green-700);">35–50 minutes</strong></p>
+      <button class="notify-btn" onclick="closeCheckout();closeCartPanel();">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const BRANCHES = [
+  { name: "Roasters Thika Road", type: "roasters", lat: -1.2241, lng: 36.8798 },
+  { name: "Ruaraka", type: "main", lat: -1.2472, lng: 36.8743 },
+  { name: "Kasarani", type: "main", lat: -1.2271, lng: 36.8993 },
+  { name: "Utawala", type: "main", lat: -1.2768, lng: 36.9684 },
+  { name: "Pangani", type: "main", lat: -1.2698, lng: 36.8368 },
+  { name: "Membley Main", type: "main", lat: -1.1850, lng: 36.9540 },
+  { name: "Jogoo Road", type: "main", lat: -1.2948, lng: 36.8540 },
+  { name: "Kahawa Wendani", type: "main", lat: -1.1843, lng: 36.9266 },
+  { name: "Kahawa West", type: "main", lat: -1.1868, lng: 36.9066 },
+  { name: "Kangemi", type: "main", lat: -1.2627, lng: 36.7496 },
+  { name: "Kayole Junction", type: "main", lat: -1.2778, lng: 36.9068 },
+  { name: "Wangige", type: "main", lat: -1.2130, lng: 36.7296 },
+  { name: "Membley Express", type: "express", lat: -1.1860, lng: 36.9560 },
+  { name: "Ruiru", type: "main", lat: -1.1476, lng: 36.9609 },
+  { name: "Thika", type: "main", lat: -1.0332, lng: 37.0693 },
+  { name: "Karuri", type: "main", lat: -1.1268, lng: 36.8241 },
+  { name: "Kabati", type: "main", lat: -0.9456, lng: 37.1143 },
+  { name: "Gakungu", type: "main", lat: -0.9221, lng: 37.1532 },
+  { name: "Kerugoya", type: "main", lat: -0.5004, lng: 37.2836 },
+  { name: "Embu", type: "main", lat: -0.5304, lng: 37.4580 },
+  { name: "Chuka", type: "main", lat: -0.3339, lng: 37.6469 },
+  { name: "Ngong", type: "main", lat: -1.3593, lng: 36.6596 },
+  { name: "Maragua", type: "main", lat: -0.7313, lng: 37.1268 },
+  { name: "Kitui", type: "main", lat: -1.3671, lng: 38.0106 },
+  { name: "Kutus", type: "main", lat: -0.5257, lng: 37.3165 },
+  { name: "Meru", type: "main", lat: 0.0468, lng: 37.6492 },
+  { name: "Nyeri", type: "main", lat: -0.4167, lng: 36.9500 },
+];
+
+let cart = [];
+let selectedBranch = null;
+let selectedPayment = 'mpesa';
+
+function distance(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function renderBranchesGrid() {
+  const grid = document.getElementById('branches-grid');
+  grid.innerHTML = BRANCHES.map(b => `
+    <div class="branch-card" onclick="selectBranch('${b.name}')">
+      <div class="branch-pin">📍</div>
+      <div class="branch-info">
+        <span class="branch-name">${b.name}</span>
+        <span class="branch-type ${b.type}">${b.type === 'main' ? 'Main' : b.type === 'express' ? 'Express' : 'Roasters'}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderModalBranches(sorted) {
+  const list = document.getElementById('modal-branches-list');
+  list.innerHTML = sorted.map((b, i) => `
+    <div class="branch-item ${selectedBranch === b.name ? 'selected' : ''}" onclick="selectBranch('${b.name}')">
+      <div class="branch-item-left">
+        <span class="branch-item-name">${b.type === 'roasters' ? '☕ ' : '🛒 '}${b.name}</span>
+        <span class="branch-item-area">${b.type.charAt(0).toUpperCase() + b.type.slice(1)} branch</span>
+      </div>
+      <span class="branch-item-right">${b.dist ? b.dist.toFixed(1) + ' km' : 'Select'}</span>
+    </div>
+  `).join('');
+}
+
+function openBranchModal() {
+  document.getElementById('branch-modal').classList.add('active');
+  renderModalBranches(BRANCHES.map(b => ({...b})));
+}
+
+function closeBranchModal() {
+  document.getElementById('branch-modal').classList.remove('active');
+}
+
+function selectBranch(name) {
+  selectedBranch = name;
+  document.getElementById('selected-branch-label').textContent = name;
+  document.getElementById('nav-location-text').textContent = name;
+  closeBranchModal();
+}
+
+function detectLocation() {
+  const btn = document.querySelector('.detect-btn');
+  btn.textContent = '🔍 Detecting your location...';
+  btn.disabled = true;
+
+  if (!navigator.geolocation) {
+    btn.textContent = '❌ Location not supported. Choose manually.';
+    btn.disabled = false;
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude, longitude } = pos.coords;
+    const sorted = BRANCHES.map(b => ({
+      ...b,
+      dist: distance(latitude, longitude, b.lat, b.lng)
+    })).sort((a, b) => a.dist - b.dist);
+
+    btn.textContent = `✅ Nearest: ${sorted[0].name} (${sorted[0].dist.toFixed(1)} km)`;
+    btn.disabled = false;
+    renderModalBranches(sorted);
+    selectBranch(sorted[0].name);
+  }, () => {
+    btn.textContent = '❌ Could not detect location. Choose manually below.';
+    btn.disabled = false;
+  });
+}
+
+function openCartPanel(e) {
+  if (e) e.preventDefault();
+  document.getElementById('cart-panel').classList.add('open');
+}
+
+function closeCartPanel() {
+  document.getElementById('cart-panel').classList.remove('open');
+}
+
+function addToCart(name, price, emoji) {
+  if (!selectedBranch) {
+    openBranchModal();
+    return;
+  }
+  const existing = cart.find(i => i.name === name);
+  if (existing) { existing.qty++; }
+  else { cart.push({ name, price, emoji, qty: 1 }); }
+  renderCart();
+  openCartPanel();
+}
+
+function renderCart() {
+  const count = cart.reduce((a, i) => a + i.qty, 0);
+  document.getElementById('cart-count').textContent = count;
+
+  const items = document.getElementById('cart-items');
+  const footer = document.getElementById('cart-footer');
+
+  if (cart.length === 0) {
+    items.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty</p><p style="font-size:13px;margin-top:8px;">Add items from the store to get started</p></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+
+  items.innerHTML = cart.map((item, idx) => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">KSh ${(item.price * item.qty).toLocaleString()}</div>
+      </div>
+      <div class="cart-qty">
+        <button class="qty-btn" onclick="changeQty(${idx},-1)">−</button>
+        <span class="qty-val">${item.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${idx},1)">+</button>
+      </div>
+    </div>
+  `).join('');
+
+  const total = cart.reduce((a, i) => a + i.price * i.qty, 0);
+  document.getElementById('cart-total').textContent = 'KSh ' + total.toLocaleString();
+  footer.style.display = 'block';
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  renderCart();
+}
+
+function openCheckout() {
+  if (!selectedBranch) { openBranchModal(); return; }
+  document.getElementById('checkout-overlay').classList.add('active');
+  document.getElementById('checkout-body').style.display = 'block';
+  document.getElementById('success-screen').classList.remove('show');
+  const total = cart.reduce((a, i) => a + i.price * i.qty, 0);
+  document.getElementById('co-subtotal').textContent = 'KSh ' + total.toLocaleString();
+  document.getElementById('co-total').textContent = 'KSh ' + (total + 150).toLocaleString();
+}
+
+function closeCheckout() {
+  document.getElementById('checkout-overlay').classList.remove('active');
+}
+
+function selectPayment(el, method) {
+  document.querySelectorAll('.pay-opt').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPayment = method;
+  document.getElementById('mpesa-fields').style.display = method === 'mpesa' ? 'block' : 'none';
+  document.getElementById('card-fields').style.display = method === 'card' ? 'block' : 'none';
+}
+
+function placeOrder() {
+  const name = document.getElementById('f-fname').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const address = document.getElementById('f-address').value.trim();
+
+  if (!name || !phone || !address) {
+    alert('Please fill in your name, phone number and delivery address.');
+    return;
+  }
+
+  document.getElementById('checkout-body').style.display = 'none';
+  document.getElementById('success-screen').classList.add('show');
+  cart = [];
+  renderCart();
+}
+
+function filterCategory(cat) {
+  event.preventDefault();
+  alert('Products for "' + cat + '" are coming soon! Sign up above to be notified when we go live.');
+}
+
+function notifyMe(btn) {
+  const input = btn.previousElementSibling;
+  if (!input.value || !input.value.includes('@')) {
+    input.style.border = '2px solid #e24b4a';
+    return;
+  }
+  input.style.border = '';
+  btn.textContent = '✅ You\'re on the list!';
+  btn.style.background = '#178a2d';
+  input.value = '';
+  input.placeholder = 'Thanks! We\'ll notify you.';
+}
+
+document.getElementById('branch-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeBranchModal();
+});
+
+document.getElementById('checkout-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCheckout();
+});
+
+renderBranchesGrid();
+renderCart();
+</script>
+</body>
+</html>
