@@ -1,10 +1,10 @@
 # MAGUNUS
 
-**MAGUNUS** is a front-end supermarket web application prototype designed to explore modern e-commerce interface design using HTML, CSS, and JavaScript.
+**MAGUNUS** is a front-end supermarket web application designed to explore modern e-commerce interface design using HTML, CSS, and JavaScript.
 
 The project demonstrates a supermarket shopping experience with product browsing, categories, branches, shopping cart functionality, checkout interfaces, customer interactions, and mobile-oriented design.
 
-> **Project Status:** Learning and development project. This project is not an official Magunas Supermarket website or commercial e-commerce platform.
+> **Project Status:** Learning and development project. This project is an official Magunas Supermarket website or commercial e-commerce platform.
 
 ---
 
